@@ -4,7 +4,7 @@ const { Schema } = require('mongoose');
 
 
 module.exports = {
-    addStock:(req, res) => {
+    addItems:(req, res) => {
         const categoryId = { mongoose:Schema.Types.ObjectId}
         const  { productName, price, availability, description,imageUrl} = req.body
     const newItem = new Item({productName, price, availability, description,imageUrl,categoryId})
