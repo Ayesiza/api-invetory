@@ -21,9 +21,23 @@ registerUser: (req, res) => {
       .catch((error) => {
         return res.status(400).json({ message: error.message });
 });
-  }
+  },
   
-
+loginUser:(req, res) => {
+  const { email, password } = req.body;
+  User.findOne({ email: email, password: password })
+    .then((user) => {
+      if (user) {
+        const token = signToken({ user });
+        return res.status(200).json({ message: "You have successfully logged in ", token });
+      } else {
+        return res.status(400).json({ error: "User not found" });
+      }
+    })
+    .catch((error) => {
+      return res.status(500).json({ error: error });
+    });
+}
 
   
 };      
