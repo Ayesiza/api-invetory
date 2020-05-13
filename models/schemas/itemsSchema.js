@@ -21,12 +21,10 @@ const itemsSchema = new Schema({
         type:String,
         required:true
     },
-    category:{
-        type:String,
-        required:true
-    }
-
+    category: [{type:Schema.Types.ObjectId,ref: 'category'}]
 });
+
+
 
 module.exports = itemsSchema;
 
