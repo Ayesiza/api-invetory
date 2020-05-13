@@ -1,9 +1,27 @@
 const mongoose = require("mongoose");
 const usersSchema =require("./schemas/usersSchema");
 
-const Users = mongoose.model("users", usersSchema);
+const User = mongoose.model("users", usersSchema);
 
 
 
-module.exports = Users;
+module.exports = User;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

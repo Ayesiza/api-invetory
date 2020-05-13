@@ -1,8 +1,7 @@
 const jwt = require("jsonwebtoken");
-const db = require("../config");
 const User = require("../models/Users");
 const dotenv = require ('dotenv');
-const Joi = require('@hapi/joi');
+
 
 
 
@@ -24,6 +23,16 @@ module.exports = {
    
     
   };
+  
+
+
+
+
+
+
+
+
+
   
  
 

@@ -15,9 +15,24 @@ module.exports = {
         if (data.error) {
           const resFomart = data.error.details[0].message.replace('"', '').split('"');
           const gotElem = resFomart[0];
-          return res.status(400).send({ status_code: 400, error: `${gotElem} field is invalid` });
+          return res.status(400).send({  error: `${gotElem} is required and it must be valid` });
         
         }
         next();
       }
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

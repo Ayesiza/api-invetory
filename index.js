@@ -16,6 +16,12 @@ app.use('/api/v1/', apiRouters)
 
 
 
+app.use((error, req, res, next) => {
+  res.status(error.status || 500).send({ error: error.status || 500, message: error.message });
+  next();
+});
+
+
 
 
 
@@ -24,6 +30,25 @@ const port = 3000;
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

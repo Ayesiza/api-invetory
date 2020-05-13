@@ -1,18 +1,7 @@
 const User = require("../models/users");
 const db = require("../config");
 const { signToken } = require("../middlewares/auth");
-const dotenv = require ('dotenv');
-
-
-dotenv.config();
-
-db.once("open", () => {
-    console.log("Connection Successful... !");
-  });
-  
-  db.on("error", (err) => {
-    console.log(err);
-  });
+require ('dotenv').config();
 
 module.exports = {
 registerUser: (req, res) => {
@@ -33,4 +22,19 @@ registerUser: (req, res) => {
         return res.status(400).json({ message: error.message });
 });
   }
+  
+
+
+  
 };      
+
+
+
+
+
+
+
+
+
+
+
