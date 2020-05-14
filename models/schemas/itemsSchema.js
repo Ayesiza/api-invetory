@@ -21,7 +21,8 @@ const itemsSchema = new Schema({
         type:String,
         required:true
     },
-    category: [{type:Schema.Types.ObjectId,ref: 'category'}]
+    inventory: [{Inventory_id:{type:Schema.Types.ObjectId,ref: 'inventory'}}],
+    category: [{category_id:{type:Schema.Types.ObjectId,ref: 'category'}}]
 });
 
 
