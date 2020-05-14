@@ -1,16 +1,18 @@
 const { Schema } = require('mongoose');
 
 const inventorySchema = new Schema({
-    categoryName:{
+    item:{
         type:String  
     },
     quantity:{
         type:Number
         
     },
-    item:{
+    
+    categoryName:{
         type:String  
     },
+   
     description:{
         type:String,   
     }

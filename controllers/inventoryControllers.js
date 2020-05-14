@@ -8,8 +8,8 @@ const { Schema } = require('mongoose');
 
 module.exports = {
     addStock:(req, res) => {   
-    const  { categoryName,item, quantity, description } = req.body
-    const newStock = new Inventory({categoryName,item, quantity, description})
+    const  { item,quantity,categoryName, description } = req.body
+    const newStock = new Inventory({item,quantity,categoryName, description})
     newStock.save()
        .then((inventory) =>{
            if(inventory) {
@@ -21,6 +21,20 @@ module.exports = {
        }); 
        
     },
+   
+    entireStock:(req, res)=> {
+        Inventory.find({}).then((inventory)=> {
+            if(inventory) {
+                return res.status(200).json({inventory});
+            }else{
+           return res.status(400).json({ message: "No Inventory found" });
+        }
+            });
+            
+     },
+
+    
+
     addCategory:(req, res) => {
         const inventoryId = { mongoose:Schema.Types.inventory_id}
         const  {categoryName , description} = req.body
