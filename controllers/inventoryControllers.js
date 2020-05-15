@@ -53,9 +53,8 @@ module.exports = {
     addItems:(req, res) => {
         const categoryId = { mongoose:Schema.Types.category_id};
         const inventoryId = { mongoose:Schema.Types.inventory_id};
-
         const  { productName, price, availability, description,imageUrl} = req.body
-    const newItem = new Item({productName, price, availability, description,imageUrl,categoryId ,inventoryId})
+        const newItem = new Item({productName, price, availability, description,imageUrl,categoryId ,inventoryId})
        newItem.save()
        .then((item) =>{
            if(item) {
@@ -66,7 +65,19 @@ module.exports = {
            console.log(error)
        }); 
        
-    }
+    },
+    allCategory:(req, res)=> {
+        Category.find({}).then((category)=> {
+            if(category) {
+                return res.status(200).json({category});
+            }else{
+           return res.status(400).json({ message: "No category found" });
+        }
+            });
+            
+     },
+
+    
 };
 
 
