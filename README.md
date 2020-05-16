@@ -1,1 +1,1 @@
-# api-invetory
+# api-inventory
