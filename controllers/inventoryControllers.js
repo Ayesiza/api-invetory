@@ -7,9 +7,10 @@ const { Schema } = require('mongoose');
 
 
 module.exports = {
-    addStock:(req, res) => {   
+    addStock:(req, res) => { 
+    const categoryId = { mongoose:Schema.Types.category_id};  
     const  { item,quantity,categoryName, description } = req.body
-    const newStock = new Inventory({item,quantity,categoryName, description})
+    const newStock = new Inventory({item,quantity,categoryName, description,categoryId })
     newStock.save()
        .then((inventory) =>{
            if(inventory) {
@@ -22,7 +23,7 @@ module.exports = {
        
     },
    
-    entireStock:(req, res)=> {
+    getEntireStock:(req, res)=> {
         Inventory.find({}).then((inventory)=> {
             if(inventory) {
                 return res.status(200).json({inventory});
@@ -33,23 +34,7 @@ module.exports = {
             
      },
 
-    
-
-    addCategory:(req, res) => {
-        const inventoryId = { mongoose:Schema.Types.inventory_id}
-        const  {categoryName , description} = req.body
-    const newCategory = new Category({categoryName , description,inventoryId})
-       newCategory.save()
-       .then((category) =>{
-           if(category) {
-               return res.status(201).json({message:'add Category',  newCategory})
-            }
-       })
-       .catch((error) =>{
-           console.log(error)
-       }); 
-       
-    },
+  
     addItems:(req, res) => {
         const categoryId = { mongoose:Schema.Types.category_id};
         const inventoryId = { mongoose:Schema.Types.inventory_id};
@@ -63,25 +48,32 @@ module.exports = {
        })
        .catch((error) =>{
            console.log(error)
-       }); 
-       
-    },
-    allCategory:(req, res)=> {
-        Category.find({}).then((category)=> {
-            if(category) {
-                return res.status(200).json({category});
+       });   
+    } ,
+   
+    deleteStock:(req, res) =>{
+        Inventory.findByIdAndDelete(req.params.id).then((inventory) => {
+            if(inventory){
+                return res.status(200).json({message:'Inventory deleted'})
             }else{
-           return res.status(400).json({ message: "No category found" });
+                return res.status(404).json({message:'inventory of given ID not found'})
+            }
+
+        })
+    },
+    updateInventory:(req, res) =>{
+      Inventory.findByIdAndUpdate (req.params.id,req.body,{new:true}).then((inventory)=>{
+        if(inventory){
+            return res.status(200).json({message:'Inventory updated',inventory})
+        }else{
+            return res.status(404).json({message:'inventory of given ID not found'})
         }
-            });
-            
-     },
-
-    
+          
+      })
+        
+    }
+     
 };
-
-
-
 
 
 
