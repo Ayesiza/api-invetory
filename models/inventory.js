@@ -6,15 +6,3 @@ const Inventory = mongoose.model("inventory", inventorySchema);
 
 
 module.exports = Inventory;
-
-
-
-
-
-
-
-
-
-
-
-

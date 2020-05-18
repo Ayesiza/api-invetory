@@ -1,7 +1,11 @@
 const { Schema } = require('mongoose');
 
 const itemsSchema = new Schema({
-    productName:{
+    itemName:{
+        type:String,
+        required:true
+    },
+    categoryName:{
         type:String,
         required:true
     },
@@ -21,27 +25,10 @@ const itemsSchema = new Schema({
         type:String,
         required:true
     },
-    inventory: [{Inventory_id:{type:Schema.Types.ObjectId,ref: 'inventory'}}],
-    category: [{category_id:{type:Schema.Types.ObjectId,ref: 'category'}}]
+    inventory: [{type:Schema.Types.ObjectId,ref: 'inventory'}],
+    category: [{type:Schema.Types.ObjectId,ref: 'category'}]
 });
 
 
 
 module.exports = itemsSchema;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

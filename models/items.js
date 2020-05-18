@@ -6,15 +6,3 @@ const Item = mongoose.model("items", itemsSchema);
 
 
 module.exports = Item;
-
-
-
-
-
-
-
-
-
-
-
-

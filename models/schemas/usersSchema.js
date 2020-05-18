@@ -22,13 +22,3 @@ lastName:{
 });
 
 module.exports = usersSchema;
-
-
-
-
-
-
-
-
-
-

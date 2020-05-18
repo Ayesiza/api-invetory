@@ -1,14 +1,21 @@
 const { Schema } =require('mongoose');
 
 const categorySchema = new Schema({
-   
-    categoryName:String,
-    description:String,
+    categoryName:{
+        type:String,
+        required:true
+    },
+    description:{
+        type:String,
+        required:true
+    },
+    
     inventory:[
-        {inventory_id:{type: Schema.Types.ObjectId, ref: 'inventory'}}
+        {type: Schema.Types.ObjectId, ref: 'inventory'}
       ]
     
    });
 
    
    module. exports = categorySchema;
+   

@@ -2,23 +2,25 @@ const { Schema } = require('mongoose');
 
 const inventorySchema = new Schema({
     item:{
-        type:String  
+        type:String,
+        required:true 
     },
     quantity:{
-        type:Number
+        type:Number,
+        required:true 
         
     },
     
     categoryName:{
-        type:String  
+        type:String,
+        required:true 
+
     },
    
-    description:{
-        type:String,   
-    },
+   
     category:
         [
-            {categoryId:{type: Schema.Types.ObjectId, ref: 'category'}}
+            {type: Schema.Types.ObjectId, ref: 'category'}
           ] 
   
     
@@ -27,20 +29,3 @@ const inventorySchema = new Schema({
 
 
 module.exports = inventorySchema;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

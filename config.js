@@ -10,27 +10,15 @@ dotenv.config();
   useFindAndModify:false
  })
 
-const db = mongoose.connection;
+const db = mongoose.connection
+.then(()=>{
+  console.log("Connection Successful... !");
+})
+.catch(err =>{
+  console.log("Connection error!",err);
+})
 
-db.once("open", () => {
-    console.log("Connection Successful... !");
-  });
-  
-  db.on("error", (err) => {
-    console.log(err);
-  });
 
   
 
 module.exports = db;
-
-
-
-
-
-
-
-
-
-
-

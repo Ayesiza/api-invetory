@@ -1,8 +1,9 @@
 const express = require('express');
 const { registerUser, loginUser } = require('../controllers/userControllers');
 const {  validation } = require('../middlewares/validations');
-const { addStock, addItems,getEntireStock, deleteStock, updateInventory } = require('../controllers/inventoryControllers');
-const { addCategory, allCategory, specificCategory } = require('../controllers/categoryController')
+const { addStock, getEntireStock, deleteStock, updateInventory } = require('../controllers/inventoryControllers');
+const { addCategory, allCategory, specificCategory } = require('../controllers/categoryController');
+const { addItems } = require('../controllers/itemControllers');
 
 
 

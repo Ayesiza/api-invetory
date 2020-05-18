@@ -6,9 +6,9 @@ const { Schema } = require('mongoose');
 
 module.exports = {
     addCategory:(req, res) => {
-        const inventoryId = { mongoose:Schema.Types.inventory_id}
+       
         const  {categoryName , description} = req.body
-    const newCategory = new Category({categoryName , description,inventoryId})
+    const newCategory = new Category({categoryName , description})
        newCategory.save()
        .then((category) =>{
            if(category) {
@@ -42,13 +42,3 @@ module.exports = {
          },
     
 };
-
-
-
-
-
-
-
-
-
-
