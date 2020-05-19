@@ -6,22 +6,3 @@ const User = mongoose.model("users", usersSchema);
 
 
 module.exports = User;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
