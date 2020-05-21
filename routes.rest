@@ -1,0 +1,13 @@
+GET HTTP://localhost:2222/c
+
+
+###
+POST HTTP://localhost:2222/api/v1/users/signup
+Content-Type: application/json
+
+{
+    "email": "chek@gmail.com",
+    "password":"chek1234567",
+    "firstName": "chekwech",
+    "lastName": "emma"
+}
