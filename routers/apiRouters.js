@@ -3,7 +3,7 @@ const { registerUser, loginUser } = require('../controllers/userControllers');
 const {  validation } = require('../middlewares/validations');
 const { addStock, getEntireStock, deleteStock, updateInventory } = require('../controllers/inventoryControllers');
 const { addCategory, allCategory, specificCategory } = require('../controllers/categoryController');
-const { addItems } = require('../controllers/itemControllers');
+const { createItem, specificItem, deleteItem, allItems } = require('../controllers/itemControllers');
 
 
 
@@ -18,7 +18,10 @@ router.put('/inventory/:id', updateInventory);
 router.post('/category', addCategory);
 router.get('/inventory/categories', allCategory);
 router.get('/inventory/category/:id', specificCategory);
-router.post('/item', addItems);
+router.post('/items', createItem);
+router.get('/items/:Id', specificItem);
+router.delete('/items/:Id', deleteItem);
+router.get('/items', allItems);
 
 
 
