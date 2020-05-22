@@ -20,6 +20,40 @@ module.exports = {
            console.log(error)
        });   
     } ,
+    newCategoryItem: async (req,res) =>{
+        const {categoryId} = req.params;
+          const newItem = new Item(req.body);
+          const category = await Category.findById(categoryId);
+          newItem.category = category;
+          await newItem.save();
+          category.items.push(newItem);
+          await category.save();
+          res.status(201).json(newItem)
+      },
+
+      getItemBycategory: async(req,res) =>{
+        const {categoryId} =req.params;
+        const category = await Category.findById(categoryId).populate("items")
+        res.status(200).json(category.items)
+        
+    },
+    deleteItem:async (req,res) =>{
+            const {itemId } = req.params;
+            const item = await Category.findByIdAndDelete(itemId)
+            res.status(200).json(item.category)
+
+
+    }
+// deleteStock:(req, res) =>{
+//         Inventory.findByIdAndDelete(req.params.id).then((inventory) => {
+//             if(inventory){
+//                 return res.status(200).json({message:'Inventory deleted'})
+//             }else{
+//                 return res.status(404).json({message:'inventory of given ID not found'})
+//             }
+
+//         })
+    
      
 };
 

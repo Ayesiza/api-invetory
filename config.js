@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.promise = global.promise;
 const dotenv = require ('dotenv');
 
 dotenv.config();

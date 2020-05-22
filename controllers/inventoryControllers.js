@@ -7,8 +7,13 @@ const { Schema } = require('mongoose');
 
 
 module.exports = {
-    addStock:(req, res) => { 
-      
+    // addStock: async (req,res, next) => {
+    //     const  { item,quantity,categoryName } = req.body
+    //   const newStock = new Inventory({item,quantity,categoryName});
+    //   await newStock.save();
+    //   res.status(201).json(newStock);
+    
+    addStock:(req, res) => {  
     const  { item,quantity,categoryName } = req.body
     const newStock = new Inventory({item,quantity,categoryName})
     newStock.save()
@@ -24,8 +29,10 @@ module.exports = {
     },
 
    
-   
-    getEntireStock:(req, res)=> {
+     getEntireStock:  (req, res) => {
+    //     const inventories =  await Inventory.find({});
+    //     res.status(200).json(inventories)
+
         Inventory.find({}).then((inventory)=> {
             if(inventory) {
                 return res.status(200).json({inventory});
@@ -56,6 +63,7 @@ module.exports = {
           
       })
         
-    }
+    },
+  
      
 };

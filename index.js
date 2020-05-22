@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+// const morgan = require('morgan');
 const apiRouters = require("./routers/apiRouters");
 const dotenv = require ('dotenv');
 
@@ -8,7 +9,7 @@ dotenv.config();
 
 const app = express();
 
-
+// app.use(morgan('dev'));
  app.use(bodyParser.json());
  app.use(bodyParser.urlencoded({ extended:true}));
 
