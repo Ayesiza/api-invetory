@@ -16,9 +16,7 @@ const inventorySchema = new Schema({
         required:true 
 
     },
-   
-   
-    category:
+    categories:
         [
             {type: Schema.Types.ObjectId, ref: 'category'}
           ] 

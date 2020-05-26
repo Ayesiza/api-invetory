@@ -10,8 +10,9 @@ const categorySchema = new Schema({
         required:true
     },
     
-    inventory:[
-        {type: Schema.Types.ObjectId, ref: 'inventory'}
+    items:
+       [ {type: Schema.Types.ObjectId, 
+            ref: 'items'}
       ]
     
    });

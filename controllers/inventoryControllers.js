@@ -1,14 +1,9 @@
 const Inventory = require("../models/inventory");
-const Category = require("../models/categories");
-const Item = require("../models/items");
 const db = require("../config");
-const { Schema } = require('mongoose');
-
 
 
 module.exports = {
-    addStock:(req, res) => { 
-      
+    addStock:(req, res) => {  
     const  { item,quantity,categoryName } = req.body
     const newStock = new Inventory({item,quantity,categoryName})
     newStock.save()
@@ -19,22 +14,20 @@ module.exports = {
        })
        .catch((error) =>{
            console.log(error)
-       }); 
-       
+       });   
     },
 
    
-   
-    getEntireStock:(req, res)=> {
-        Inventory.find({}).then((inventory)=> {
+     getEntireStock:  (req, res) => {
+           Inventory.find({}).then((inventory)=> {
             if(inventory) {
                 return res.status(200).json({inventory});
             }else{
            return res.status(400).json({ message: "No Inventory found" });
         }
-            });
-            
+            });     
      },
+
 
     deleteStock:(req, res) =>{
         Inventory.findByIdAndDelete(req.params.id).then((inventory) => {
@@ -43,9 +36,10 @@ module.exports = {
             }else{
                 return res.status(404).json({message:'inventory of given ID not found'})
             }
-
         })
     },
+
+
     updateInventory:(req, res) =>{
       Inventory.findByIdAndUpdate (req.params.id,req.body,{new:true}).then((inventory)=>{
         if(inventory){
@@ -54,8 +48,8 @@ module.exports = {
             return res.status(404).json({message:'inventory of given ID not found'})
         }
           
-      })
-        
-    }
+      })  
+    },
+  
      
 };
