@@ -1,14 +1,10 @@
 
 const Category = require("../models/categories");
-const Item = require("../models/items");
-const { Schema } = require('mongoose');
-
 
 
 module.exports = {
-    addCategory:(req, res) => {
-       
-        const  {categoryName , description} = req.body
+    addCategory:(req, res) => { 
+    const  {categoryName , description} = req.body
     const newCategory = new Category({categoryName , description})
        newCategory.save()
        .then((category) =>{

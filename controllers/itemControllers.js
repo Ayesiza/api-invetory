@@ -1,9 +1,6 @@
-const Inventory = require("../models/inventory");
 const Category = require("../models/categories");
 const Item = require("../models/items");
 const db = require("../config");
-const { Schema } = require('mongoose');
-
 
 
 module.exports = {
@@ -13,13 +10,15 @@ module.exports = {
        newItem.save()
        .then((item) =>{
            if(item) {
-               return res.status(201).json({message:'new stock',  newItem})
+               return res.status(201).json(newItem)
             }
        })
        .catch((error) =>{
            console.log(error)
        });   
-    } ,
+    },
+    
+
     newCategoryItem: async (req,res) =>{
         const {categoryId} = req.params;
           const newItem = new Item(req.body);
@@ -37,23 +36,24 @@ module.exports = {
         res.status(200).json(category.items)
         
     },
+    getSpecificItem:(req,res) =>{
+        Item.findById(req.params.id).then((item)=>{      
+        if(item){res.json({status:200, message:'item Found',item}) 
+    }else{
+        return res.status(404).json({status:404, message:'item of specific id not found'})
+    }  
+            })     
+         },
+    
+
+   
     deleteItem:async (req,res) =>{
-            const {itemId } = req.params;
-            const item = await Category.findByIdAndDelete(itemId)
-            res.status(200).json(item.category)
+            const {itemId } = req.params; 
+           await Category.items.findByIdAndDelete(itemId)
+            res.status(200).json({message:'item deleted'})
 
 
     }
-// deleteStock:(req, res) =>{
-//         Inventory.findByIdAndDelete(req.params.id).then((inventory) => {
-//             if(inventory){
-//                 return res.status(200).json({message:'Inventory deleted'})
-//             }else{
-//                 return res.status(404).json({message:'inventory of given ID not found'})
-//             }
-
-//         })
-    
+  
      
 };
-

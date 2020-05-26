@@ -1,34 +1,31 @@
-const express = require('express');
 const { registerUser, loginUser } = require('../controllers/userControllers');
-const {  validation } = require('../middlewares/validations');
 const { addStock, getEntireStock, deleteStock, updateInventory } = require('../controllers/inventoryControllers');
 const { addCategory, allCategory, specificCategory } = require('../controllers/categoryController');
-const { addItems,  getItemBycategory, newCategoryItem, deleteItem } = require('../controllers/itemControllers');
+const { addItems,  getItemBycategory, newCategoryItem, deleteItem, getSpecificItem } = require('../controllers/itemControllers');
+const { validation,checkParamsInPut,getToken, verifyToken } = require('../middlewares/validations')
 
 
 const router = require('express-promise-router')();
-// const router = express.Router()
+
 
 router.post('/users/auth/signup',validation , registerUser);
 router.post('/users/auth/login',loginUser);
-router.post('/inventory',  addStock);
-router.get('/inventory', getEntireStock);
-router.delete('/inventory/:id', deleteStock);
-router.put('/inventory/:id', updateInventory);
+router.post('/inventory', getToken,verifyToken, addStock);
+router.get('/inventory', getToken,verifyToken, getEntireStock);
+router.delete('/inventory/:id',  getToken,verifyToken,checkParamsInPut, deleteStock);
+router.put('/inventory/:id',  getToken,verifyToken, checkParamsInPut, updateInventory);
 
 // category routes
-router.post('/inventory/category', addCategory);
-router.get('/inventory/categories', allCategory);
-router.get('/inventory/category/:id', specificCategory);
+router.post('/inventory/category',  getToken,verifyToken,addCategory);
+router.get('/inventory/categories', getToken,verifyToken,allCategory);
+router.get('/inventory/category/:id', getToken,verifyToken,checkParamsInPut, specificCategory);
 
 // items routes
-router.post('/item', addItems);
-router.get('/inventory/:categoryId/items', getItemBycategory);
-router.post('/inventory/:categoryId/items', newCategoryItem );
-router.post('/inventory/:categoryId/itemsId', deleteItem);
-
-
-
+router.post('/inventory/category/item',  getToken,verifyToken,addItems);
+router.get('/inventory/:categoryId/items', getToken,verifyToken, getItemBycategory);
+router.post('/inventory/:categoryId/items',  getToken,verifyToken,newCategoryItem );
+router.get('/inventory/category/items/:itemId', getSpecificItem);
+router.delete('/inventory/:categoryId/items/:itemId', deleteItem);
 
 
     
