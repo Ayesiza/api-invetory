@@ -2,7 +2,6 @@ const Category = require("../models/categories");
 const Item = require("../models/items");
 const db = require("../config");
 
-
 module.exports = {
     addItems:(req, res) => {
         const  { itemName, categoryName, price, availability, description,imageUrl} = req.body
@@ -57,3 +56,4 @@ module.exports = {
   
      
 };
+
